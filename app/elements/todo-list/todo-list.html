@@ -48,7 +48,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               as="todo"
               filter="{{_computeFilter(filterBy)}}"
               observe="isComplete">
-      <todo-item todo="{{todo}}"></todo-item>
+      <todo-item id={{todo.__firebaseKey__}} todo="{{todo}}"></todo-item>
     </template>
 
   </template>
