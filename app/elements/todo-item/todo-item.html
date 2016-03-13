@@ -115,7 +115,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         myArray: {
           type: Array,
-          value: []
+          value: function() {return [];}
         },
         myString: {
           type: String,
@@ -123,7 +123,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
       },
-
       attached: function() {
         // Delegate focus events with useCapture to figure out if one of our
         // child elements is being focused or if we're about to blur
