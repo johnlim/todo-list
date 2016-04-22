@@ -11,6 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
 
 <dom-module id="todo-input">
 
@@ -69,15 +70,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         outline-width: 3px;
       }
     </style>
+    <iron-media-query query="(max-width: 600px)" query-matches="{{isAtMost600px}}"></iron-media-query>
 
     <div class="input-wrapper">
-
-      <paper-input id="todoInput"
-                   no-label-float
-                   label="Add an item"
-                   on-keydown="_checkAdd">
-      </paper-input>
-
+      <template is="dom-if" if="{{!isAtMost600px}}">
+        <paper-input id="todoInput"
+                     no-label-float
+                     label="Add an item"
+                     on-keydown="_checkAdd">
+        </paper-input>
+      </template>
       <paper-button on-tap="_add">Add</paper-button>
 
     </div>
@@ -92,6 +94,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     // Listen for ENTER key
     _checkAdd: function(e) {
+      console.log(this.$.todoInput); //prints undefined
+      console.log(this.$$("#todoInput")); //successfully selects paper-input
       if (e.keyCode === 13) {
         this._add();
       }
